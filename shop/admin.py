@@ -103,10 +103,14 @@ class CustomerAdmin(admin.ModelAdmin):
             orders = Count('order')
         )
 
+class OrderItemInline(admin.TabularInline):
+    model = models.OrderItem
+
 @admin.register(models.Order)
 class OrderAdmin(admin.ModelAdmin):
     autocomplete_fields = ['customer']
     list_display = ['id', 'placed_at', 'customer']
+    inlines=[OrderItemInline]
     ordering = ['id']
     list_per_page = 10
     list_select_related = ['customer']
