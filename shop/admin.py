@@ -1,5 +1,23 @@
+from typing import Any
 from django.contrib import admin
+from django.http import HttpRequest
+from django.db.models.aggregates import Count
 from . import models
+
+@admin.register(models.Collection)
+class CollectionAdmin(admin.ModelAdmin):
+        list_display = ['title', 'products_count']
+    list_per_page = 10 
+
+    @admin.display(ordering='products_count')
+    def products_count(self, collection):
+        return collection.products_count
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            products_count = Count('product')
+        )
+
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -18,14 +36,14 @@ class ProductAdmin(admin.ModelAdmin):
         return 'ok'
 
 @admin.register(models.Customer)
-class CustomersAdmin(admin.ModelAdmin):
+class CustomerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'membership']
     list_editable = ['membership']
     ordering = ["first_name"]
     list_per_page = 10
 
 @admin.register(models.Order)
-class OrdersAdmin(admin.ModelAdmin):
+class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'placed_at', 'customer']
     ordering = ['id']
     list_per_page = 10
@@ -38,6 +56,6 @@ class OrdersAdmin(admin.ModelAdmin):
 
     def customer_last_name(self, order):
         return order.customer.last_name
-admin.site.register(models.Collection)
+
 
 # Register your models here.
