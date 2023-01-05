@@ -29,6 +29,9 @@ class Product(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
     promotions = models.ManyToManyField(Promotion, blank=True)
 
+    def __str__(self) -> str:
+        return self.title
+        
 class Customer(models.Model):
     MEMBERSHIP_BRONZE = "B"
     MEMBERSHIP_SILVER = "S"
@@ -63,8 +66,7 @@ class Order(models.Model):
     payment_status = models.CharField(max_length=1, choices=PAYMENT_CHOICES, default=PAYMENT_PENDING)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
 
-
-
+    
 class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
