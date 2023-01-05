@@ -100,13 +100,11 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(models.Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'placed_at', 'customer_name']
+    list_display = ['id', 'placed_at', 'customer']
     ordering = ['id']
     list_per_page = 10
     list_select_related = ['customer']
-
-    def customer_name(self, order):
-        return order.customer.first_name + " " + order.customer.last_name
+        
 
 
 # Register your models here.
