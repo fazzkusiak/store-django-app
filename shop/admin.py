@@ -4,7 +4,10 @@ from django.http import HttpRequest
 from django.db.models.aggregates import Count
 from django.utils.html import format_html, urlencode
 from django.urls import reverse
+
+from tags.models import TaggedItem
 from . import models
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 
 @admin.register(models.Collection)
@@ -46,6 +49,9 @@ class InventoryFilter(admin.SimpleListFilter):
             return queryset.filter(inventory__lte=10)
 
     
+class TagInline(GenericTabularInline):
+    autocomplete_fields = ['tag']
+    model = TaggedItem
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -53,6 +59,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['title']
     }
+    inlines=[TagInline]
     actions = ['clear_inventory']
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title']
     list_editable = ['unit_price']
@@ -105,6 +112,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class OrderItemInline(admin.TabularInline):
     model = models.OrderItem
+
 
 @admin.register(models.Order)
 class OrderAdmin(admin.ModelAdmin):
