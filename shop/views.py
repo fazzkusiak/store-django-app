@@ -7,19 +7,16 @@ from rest_framework.views import APIView
 from .models import Product, Collection
 from .serializers import ProductSerializer, CollectionSerializer
 from django.db.models.aggregates import Count
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.generics import ListCreateAPIView
 
-class ProductList(APIView):
-    def get(self, request):
-        queryset = Product.objects.select_related('collection').all()
-        serializer = ProductSerializer(
-            queryset, many=True, context={'request': request}
-            )
-        return Response(serializer.data)
-    def post(self, request):
-        serializer = ProductSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class ProductList(ListCreateAPIView):
+    queryset = Product.objects.select_related('collection').all()
+    serializer = ProductSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 class ProductDetail(APIView):
     def get(self, request, id):
