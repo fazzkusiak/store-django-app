@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class ShopCustomConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'shop_custom'
+    name = 'shop_custom' 
