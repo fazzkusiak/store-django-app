@@ -9,20 +9,16 @@ from .serializers import ProductSerializer, CollectionSerializer
 from django.db.models.aggregates import Count
 from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 
  
-class ProductList(ListCreateAPIView):
+class ProductViewSet(ModelViewSet):
     queryset = Product.objects.select_related('collection').all()
     serializer_class = ProductSerializer
 
     def get_serializer_context(self):
         return {'request': self.request}
     
-class ProductDetail(RetrieveUpdateDestroyAPIView):
-
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
     def delete(self, request, pk):
         product = get_object_or_404(Product, pk=pk)
         if product.orderitems.count() > 0:
@@ -30,12 +26,9 @@ class ProductDetail(RetrieveUpdateDestroyAPIView):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class CollectionList(ListCreateAPIView):
-    queryset = Collection.objects.annotate(products_count=Count('products')).all()
-    serializer_class = CollectionSerializer
 
-class CollectionDetail(RetrieveUpdateDestroyAPIView):
-    
+class CollectionViewSet(ModelViewSet):
+ 
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
 
@@ -43,7 +36,4 @@ class CollectionDetail(RetrieveUpdateDestroyAPIView):
         collection = get_object_or_404(Collection, pk=pk)
         collection.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
 
