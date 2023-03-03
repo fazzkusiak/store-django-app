@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from rest_framework_nested import routers
 from . import views
 
-router = DefaultRouter()
+
+router = routers.DefaultRouter()
 router.register('products', views.ProductViewSet)
 router.register('collection', views.CollectionViewSet)
 
-urlpatterns = router.urls
+products_router = routers.NestedDefaultRouter(router, 'products', lookup='product_pk')
+products_router.register('reviews', views.ReviewViewSet, basename='product-reviews')
+
+urlpatterns = router.urls + products_router.urls

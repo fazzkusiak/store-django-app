@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from shop.models import Product, Collection
+from shop.models import Product, Collection, Review
 from decimal import Decimal
 from django.db.models.aggregates import Count
 
