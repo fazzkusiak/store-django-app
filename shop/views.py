@@ -45,7 +45,7 @@ class CollectionViewSet(ModelViewSet):
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
 
-    def delete(self, request, pk):
+    def delete(self, request, pk): 
         collection = get_object_or_404(Collection, pk=pk)
         collection.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
