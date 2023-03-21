@@ -15,7 +15,7 @@ from .filters import ProductFilter
 from .models import Customer, Product, Collection, Review, Cart, CartItem
 from .serializers import CustomerSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, CartItemSerializer, AddCartItemSerializer, UpdateCartItemSerializer
 from .pagination import DefaultPagination
-from .permissions import FullDjangoModelPermissions, IsAdminOrReadOnly
+from .permissions import FullDjangoModelPermissions, IsAdminOrReadOnly, ViewCustomerHistoryPermission
 
 
 
@@ -91,8 +91,10 @@ class CartItemViewSet(ModelViewSet):
         .select_related('product')
 
 class CustomerViewSet(ModelViewSet):
-    
 
+    @action(detail=True, permission_classes=[ViewCustomerHistoryPermission])
+    def history(self, request, pk):
+        return Response('ok')
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAdminUser]

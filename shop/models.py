@@ -34,6 +34,10 @@ class Product(models.Model):
         return self.title
         
 class Customer(models.Model):
+    class Meta:
+        permissions = [
+            ('view_history', 'Can view history')
+        ]
     MEMBERSHIP_BRONZE = "B"
     MEMBERSHIP_SILVER = "S"
     MEMBERSHIP_GOLD = "G"
