@@ -9,7 +9,6 @@ from tags.models import TaggedItem
 from . import models
 from django.contrib.contenttypes.admin import GenericTabularInline
 
-
 @admin.register(models.Collection)
 class CollectionAdmin(admin.ModelAdmin):
     search_fields = ['title']
@@ -124,5 +123,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_select_related = ['customer']
         
 
-
-# Register your models here.
+@admin.register(models.OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    model = models.OrderItem
