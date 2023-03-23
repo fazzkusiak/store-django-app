@@ -30,7 +30,7 @@ media
 
 # C extensions
 *.so
-
+.vscode
 # Distribution / packaging
 .Python
 build/
