@@ -114,7 +114,7 @@ class CustomerViewSet(ModelViewSet):
 class OrderViewSet(ModelViewSet):
 
     def create(self, request):
-        serializer = CreateOrderSerializer(data=request.data)
+        serializer = CreateOrderSerializer(data=request.data, context={'user_id':self.request.user.id})
         serializer.is_valid(raise_exception=True)
         order = serializer.save()
         serializer = OrderSerializer(order)
