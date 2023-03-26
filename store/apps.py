@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
-
-class ShopConfig(AppConfig):
+class StoreConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'shop'
-
+    name = 'store'
+    
+    
     def ready(self) -> None:
-        import shop.signals.handlers
+        import store.signals.handlers
