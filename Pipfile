@@ -18,9 +18,12 @@ setuptools = "*"
 celery = "*"
 eventlet = "*"
 flower = "*"
+pytest = "*"
 
 [dev-packages]
 autopep8 = "*"
+pytest = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.10"
