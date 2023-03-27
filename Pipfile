@@ -12,6 +12,7 @@ django-filter = "*"
 djoser = "*"
 drf-nested-routers = "*"
 pillow = "*"
+django-templated-mail = "*"
 
 [dev-packages]
 autopep8 = "*"
