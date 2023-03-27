@@ -174,14 +174,13 @@ DEFAULT_FROM_EMAIL = 'from@test.com'
 
 ADMINS = [
     ('test', 'admin@test.com')
-    
 ]
 
 CELERY_BROKER_URL = 'redis://localhost:6379/1'
 CELERY_BEAT_SCHEDULE = {
     'notify_customers': {
-        'task': 'playground.tasks.notify_customers',
-        'schedule': crontab(minute='*/5'),
+        'task': 'store.tasks.notify_customers',
+        'schedule': 10,
         'args': ['hello'],
 
     }

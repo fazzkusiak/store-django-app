@@ -17,6 +17,7 @@ redis = "*"
 setuptools = "*"
 celery = "*"
 eventlet = "*"
+flower = "*"
 
 [dev-packages]
 autopep8 = "*"
