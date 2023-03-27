@@ -173,4 +173,7 @@ DEFAULT_FROM_EMAIL = 'from@test.com'
 
 ADMINS = [
     ('test', 'admin@test.com')
+    
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
