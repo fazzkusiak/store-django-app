@@ -13,6 +13,8 @@ djoser = "*"
 drf-nested-routers = "*"
 pillow = "*"
 django-templated-mail = "*"
+redis = "*"
+setuptools = "*"
 
 [dev-packages]
 autopep8 = "*"
