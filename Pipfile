@@ -20,6 +20,7 @@ eventlet = "*"
 flower = "*"
 pytest = "*"
 django-redis = "*"
+whitenoise = "*"
 
 [dev-packages]
 autopep8 = "*"
