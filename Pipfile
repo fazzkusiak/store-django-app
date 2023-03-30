@@ -28,6 +28,7 @@ pytest-watch = "*"
 model-bakery = "*"
 locust = "*"
 windows-curses = "*"
+django-silk = "*"
 
 [requires]
 python_version = "3.10"
