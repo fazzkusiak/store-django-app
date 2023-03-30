@@ -8,6 +8,10 @@ from store.tasks import notify_customers
 from django.views.decorators.cache import cache_page
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
+import logging
+
+
+logging.getLogger(__name__  )
 # Create your views here.
 class HelloView(APIView):
     @method_decorator(cache_page(5 * 60))
