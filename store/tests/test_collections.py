@@ -56,7 +56,7 @@ class TestRetrieveCollection:
         assert response.data == {
             'id': collection.id,
             'title': collection.title
-        }
+        }   
 
         
     # collection doesn't exist (404)
