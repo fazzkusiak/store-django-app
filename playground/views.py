@@ -11,7 +11,7 @@ def calculate():
     return x 
 
 def say_hello(request):
-    notify_customers.delay('yo there')
+    
     return render(request, 'hello.html', {'name' : 'Mosh'})
 
 '''

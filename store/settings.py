@@ -61,8 +61,8 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-if DEBUG:
-    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
+# if DEBUG:
+#     MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
 ROOT_URLCONF = 'store.urls'
 
 TEMPLATES = [
@@ -183,5 +183,15 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 10,
         'args': ['hello'],
 
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
     }
 }

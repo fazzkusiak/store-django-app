@@ -19,6 +19,7 @@ celery = "*"
 eventlet = "*"
 flower = "*"
 pytest = "*"
+django-redis = "*"
 
 [dev-packages]
 autopep8 = "*"
