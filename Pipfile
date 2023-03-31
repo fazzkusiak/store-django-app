@@ -23,6 +23,8 @@ django-redis = "*"
 whitenoise = "*"
 baker = "*"
 model-bakery = "*"
+gunicorn = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 autopep8 = "*"

@@ -318,3 +318,4 @@ coverage.xml
 docs/_build/
 
 /static
+client/node_modules
