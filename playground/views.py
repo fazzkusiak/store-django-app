@@ -11,13 +11,18 @@ from django.utils.decorators import method_decorator
 import logging
 
 
-logging.getLogger(__name__  )
+logger = logging.getLogger(__name__) 
 # Create your views here.
 class HelloView(APIView):
     @method_decorator(cache_page(5 * 60))
     def get(self, request):
-        response = requests.get('https://httpbin.org/delay/2')
-        data = response.json()
+        try:
+            logger.info('calling httpbin')
+            response = requests.get('https://httpbin.org/delay/2')
+            logger.info('received the response')
+            data = response.json()
+        except requests.ConnectionError:
+            logger.crticial('httpbin is offline')
         return render(request, 'hello.html', {'name' : data})
 
 # @cache_page(5 * 60)
