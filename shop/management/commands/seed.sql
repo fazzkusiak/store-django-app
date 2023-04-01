@@ -3,7 +3,7 @@ insert into
   shop_product (
     id,
     title,
-    description,f
+    description,
     unit_price,
     inventory,
     last_update,
