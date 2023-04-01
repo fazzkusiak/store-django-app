@@ -7,7 +7,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['kubbuy-prod.fly.dev']
+ALLOWED_HOSTS = ['kubbuy-prod.herokuapp.com']
 
 DATABASES = {
     'default': dj_database_url.config()

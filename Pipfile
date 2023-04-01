@@ -26,6 +26,7 @@ model-bakery = "*"
 gunicorn = "*"
 django-cors-headers = "*"
 python-fly = "*"
+dj-database-url = "*"
 
 [dev-packages]
 autopep8 = "*"
