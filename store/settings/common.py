@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     "corsheaders",
-    'silk',
     'playground',
     'debug_toolbar',
     'shop',
