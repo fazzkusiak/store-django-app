@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from tags.models import TaggedItem
 from . import models
+from .models import ProductImage
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 @admin.register(models.Collection)
@@ -52,13 +53,22 @@ class TagInline(GenericTabularInline):
     autocomplete_fields = ['tag']
     model = TaggedItem
 
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    readonly_fields = ['thumbnail']    
+
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src="{instance.image.url}" class="thumbnail">')
+        return ''
+
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     autocomplete_fields = ['collection']
     prepopulated_fields = {
         'slug': ['title']
     }
-    inlines=[TagInline]
+    inlines=[TagInline, ProductImageInline]
     actions = ['clear_inventory']
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title']
     list_editable = ['unit_price']
@@ -80,7 +90,11 @@ class ProductAdmin(admin.ModelAdmin):
     def clear_inventory(self, request, queryset):
         updated_count = queryset.update(inventory=0)
         self.message_user(request, f"{updated_count} were succesfully updated", messages.SUCCESS )
-        
+    
+    class Media:
+        css = {
+            'all': ['shop/styles.css']
+        }
         
 
 
