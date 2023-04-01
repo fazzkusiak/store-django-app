@@ -1,5 +1,5 @@
 insert into
-  store_collection (id, title, featured_product_id)
+  shop_collection (id, title, featured_product_id)
 values
   (2, 'Grocery', null),
   (3, 'Beauty', null),
@@ -12,10 +12,10 @@ values
   (10, 'Magazines', null);
 
 insert into
-  store_product (
+  shop_product (
     id,
     title,
-    description,
+    description,f
     unit_price,
     inventory,
     last_update,
