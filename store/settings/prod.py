@@ -12,17 +12,17 @@ ALLOWED_HOSTS = ['kubbuy-prod.onrender.com']
 DATABASES = {
     'default': dj_database_url.config()
 }
-REDISCLOUD_URL = os.environ['REDISCLOUD_URL']
+#REDISCLOUD_URL = os.environ['REDISCLOUD_URL']
 
-CELERY_BROKER_URL = REDISCLOUD_URL
+#CELERY_BROKER_URL = REDISCLOUD_URL
 
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": REDISCLOUD_URL,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": REDISCLOUD_URL,
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
