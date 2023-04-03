@@ -10,8 +10,14 @@ DEBUG = False
 ALLOWED_HOSTS = ['kubbuy-prod.onrender.com']
 
 DATABASES = {
-    'default': dj_database_url.config()
-}
+'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': os.environ['MYSQL_DATABASE'],
+    'HOST': 'mysql-4dyg',
+    'PORT': '3306',
+    'USER': os.environ['MYSQL_USER'],
+    'PASSWORD': os.environ['MYSQL_PASSWORD'],
+}}
 #REDISCLOUD_URL = os.environ['REDISCLOUD_URL']
 
 #CELERY_BROKER_URL = REDISCLOUD_URL
